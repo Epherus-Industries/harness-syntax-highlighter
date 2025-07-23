@@ -1,0 +1,30 @@
+{
+  "name": "harness-syntax-highlighter",
+  "displayName": "Harness Syntax Highlighter",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "yaml",
+      "aliases": ["harness", "yaml"],
+      "extensions": [".yml",".yaml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "yaml",
+      "scopeName": "source.harness",
+      "path": "./syntaxes/yaml.tmLanguage.json"
+    }]
+  },
+  "author": {
+    "name": "Mike Strid",
+    "email": "mike.strid@protonmail.com"
+  },
+  "license": "MIT"
+}

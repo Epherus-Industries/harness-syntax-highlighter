@@ -1,0 +1,121 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "harness",
+	"patterns": [
+		{
+			"include": "#harness-keywords"
+		},
+		{
+			"include": "#variable-definitions"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"harness-keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.harness.pipeline-structure",
+					"match": "^\\s*(pipeline|stages?|steps?|stepGroup|execution|rollbackSteps)\\s*:",
+					"captures": {
+						"1": {
+							"name": "keyword.control.harness.pipeline-structure"
+						}
+					}
+				},
+				{
+					"name": "keyword.other.harness.properties",
+					"match": "^\\s*(-\\s+)?(name|identifier|type|spec|timeout|when|condition|template|templateRef|versionLabel|templateInputs|shell|source|script|environmentVariables|outputVariables|services|environments|failureStrategies)\\s*:",
+					"captures": {
+						"2": {
+							"name": "keyword.other.harness.properties"
+						}
+					}
+				},
+				{
+					"name": "constant.language.harness.step-types",
+					"match": "\\b(Deployment|K8sRollingDeploy|K8sApply|K8sDryRun|K8sRollingRollback|ShellScript|Http|HarnessApproval|JiraCreate|JiraUpdate)\\b"
+				},
+				{
+					"name": "constant.language.harness.deployment-types",
+					"match": "\\b(Kubernetes|Rolling|Canary|BlueGreen)\\b"
+				}
+			]
+		},
+		"variable-definitions": {
+			"patterns": [
+				{
+					"name": "keyword.other.harness.variables-block",
+					"match": "^\\s*(variables)\\s*:",
+					"captures": {
+						"1": {
+							"name": "keyword.other.harness.variables-block"
+						}
+					}
+				},
+				{
+					"name": "keyword.other.harness.variable-property",
+					"match": "^\\s*(-\\s+)?(name|type|description|required|value)\\s*:",
+					"captures": {
+						"2": {
+							"name": "keyword.other.harness.variable-property"
+						}
+					}
+				},
+				{
+					"name": "constant.language.harness.variable-type",
+					"match": "\\b(Secret|String|Number)\\b"
+				},
+				{
+					"name": "constant.language.harness.boolean",
+					"match": "\\b(true|false)\\b"
+				},
+				{
+					"name": "constant.language.harness.runtime-input",
+					"match": "<\\+input>"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.harness.expression",
+					"match": "<\\+([a-zA-Z_][a-zA-Z0-9_]*\\.)*[a-zA-Z_][a-zA-Z0-9_]*(\\.get\\(\"[^\"]+\"\\))?>",
+					"captures": {
+						"0": {
+							"name": "variable.other.harness.expression"
+						}
+					}
+				},
+				{
+					"name": "variable.other.harness.simple",
+					"match": "<\\+[^>]+>",
+					"captures": {
+						"0": {
+							"name": "variable.other.harness.simple"
+						}
+					}
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.yaml",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"include": "#variables"
+				},
+				{
+					"name": "constant.character.escape.yaml",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.harness"
+}
