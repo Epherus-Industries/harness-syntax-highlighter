@@ -1,7 +1,7 @@
 {
   "name": "harness-syntax-highlighter",
   "displayName": "Harness CI/CD Pipeline Syntax Highlighter",
-  "description": "Syntax highlighting for Harness CI/CD pipeline YAML files with support for variables, expressions, and pipeline structures",
+  "description": "Syntax highlighting for Harness CI/CD pipeline YAML files with colorblind-friendly accessibility features, supporting variables, expressions, and pipeline structures",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.102.0"
@@ -20,6 +20,11 @@
       "language": "yaml",
       "scopeName": "source.harness",
       "path": "./syntaxes/yaml.tmLanguage.json"
+    }],
+    "themes": [{
+      "label": "Harness Colorblind Friendly",
+      "uiTheme": "vs-dark",
+      "path": "./themes/colorblind-friendly.json"
     }]
   },
   "author": {
@@ -31,6 +36,6 @@
     "type": "git",
     "url": "https://github.com/Epherus-Industries/harness-syntax-highlighter"
   },
-  "keywords": ["harness", "yaml", "syntax", "highlighting", "ci/cd", "pipeline"],
+  "keywords": ["harness", "yaml", "syntax", "highlighting", "ci/cd", "pipeline", "colorblind", "accessibility", "a11y"],
   "license": "MIT"
 }

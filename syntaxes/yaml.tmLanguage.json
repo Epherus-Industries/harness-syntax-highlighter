@@ -19,29 +19,29 @@
 		"harness-keywords": {
 			"patterns": [
 				{
-					"name": "keyword.control.harness.pipeline-structure",
+					"name": "entity.name.function.harness.pipeline-structure",
 					"match": "^\\s*(pipeline|stages?|steps?|stepGroup|execution|rollbackSteps)\\s*:",
 					"captures": {
 						"1": {
-							"name": "keyword.control.harness.pipeline-structure"
+							"name": "entity.name.function.harness.pipeline-structure"
 						}
 					}
 				},
 				{
-					"name": "keyword.other.harness.properties",
+					"name": "support.function.harness.properties",
 					"match": "^\\s*(-\\s+)?(name|identifier|type|spec|timeout|when|condition|template|templateRef|versionLabel|templateInputs|shell|source|script|environmentVariables|outputVariables|services|environments|failureStrategies)\\s*:",
 					"captures": {
 						"2": {
-							"name": "keyword.other.harness.properties"
+							"name": "support.function.harness.properties"
 						}
 					}
 				},
 				{
-					"name": "constant.language.harness.step-types",
+					"name": "support.class.harness.step-types",
 					"match": "\\b(Deployment|K8sRollingDeploy|K8sApply|K8sDryRun|K8sRollingRollback|ShellScript|Http|HarnessApproval|JiraCreate|JiraUpdate)\\b"
 				},
 				{
-					"name": "constant.language.harness.deployment-types",
+					"name": "storage.type.harness.deployment-types",
 					"match": "\\b(Kubernetes|Rolling|Canary|BlueGreen)\\b"
 				}
 			]
@@ -58,24 +58,24 @@
 					}
 				},
 				{
-					"name": "keyword.other.harness.variable-property",
+					"name": "support.variable.harness.variable-property",
 					"match": "^\\s*(-\\s+)?(name|type|description|required|value)\\s*:",
 					"captures": {
 						"2": {
-							"name": "keyword.other.harness.variable-property"
+							"name": "support.variable.harness.variable-property"
 						}
 					}
 				},
 				{
-					"name": "constant.language.harness.variable-type",
+					"name": "storage.type.harness.variable-type",
 					"match": "\\b(Secret|String|Number)\\b"
 				},
 				{
-					"name": "constant.language.harness.boolean",
+					"name": "constant.language.boolean.harness",
 					"match": "\\b(true|false)\\b"
 				},
 				{
-					"name": "constant.language.harness.runtime-input",
+					"name": "meta.embedded.harness.runtime-input",
 					"match": "<\\+input>"
 				}
 			]

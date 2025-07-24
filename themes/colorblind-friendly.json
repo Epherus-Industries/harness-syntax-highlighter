@@ -1,0 +1,101 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "Harness Colorblind Friendly",
+  "type": "dark",
+  "semanticHighlighting": true,
+  "colors": {
+    "editor.background": "#1e1e1e",
+    "editor.foreground": "#ffffff",
+    "editorLineNumber.foreground": "#858585",
+    "editorLineNumber.activeForeground": "#ffffff"
+  },
+  "tokenColors": [
+    {
+      "name": "Pipeline Structure Keywords (Bold Blue)",
+      "scope": ["entity.name.function.harness.pipeline-structure"],
+      "settings": {
+        "foreground": "#4FC3F7",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Property Names (Orange)",
+      "scope": ["support.function.harness.properties"],
+      "settings": {
+        "foreground": "#FF9800",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Step Types (Green)",
+      "scope": ["support.class.harness.step-types"],
+      "settings": {
+        "foreground": "#4CAF50",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Deployment Types (Purple)",
+      "scope": ["storage.type.harness.deployment-types"],
+      "settings": {
+        "foreground": "#9C27B0",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "name": "Variable Properties (Cyan)",
+      "scope": ["support.variable.harness.variable-property"],
+      "settings": {
+        "foreground": "#00BCD4",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Variable Types (Yellow)",
+      "scope": ["storage.type.harness.variable-type"],
+      "settings": {
+        "foreground": "#FFC107",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Boolean Values (Red)",
+      "scope": ["constant.language.boolean.harness"],
+      "settings": {
+        "foreground": "#F44336",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Runtime Input (Magenta with Background)",
+      "scope": ["meta.embedded.harness.runtime-input"],
+      "settings": {
+        "foreground": "#E91E63",
+        "fontStyle": "bold italic"
+      }
+    },
+    {
+      "name": "Variables Block (Lime)",
+      "scope": ["keyword.other.harness.variables-block"],
+      "settings": {
+        "foreground": "#8BC34A",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Harness Variables (Light Blue with underline)",
+      "scope": ["variable.other.harness.expression", "variable.other.harness.simple"],
+      "settings": {
+        "foreground": "#03A9F4",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "name": "Strings (White)",
+      "scope": ["string.quoted.double.yaml"],
+      "settings": {
+        "foreground": "#FFFFFF"
+      }
+    }
+  ]
+}
