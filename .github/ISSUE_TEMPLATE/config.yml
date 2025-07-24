@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Vulnerability
+    url: mailto:mike.strid@protonmail.com?subject=SECURITY%20-%20Harness%20Syntax%20Highlighter
+    about: Report security vulnerabilities privately via email
+  - name: General Support
+    url: https://github.com/Epherus-Industries/harness-syntax-highlighter/discussions
+    about: Ask questions and get help from the community
+  - name: Harness Documentation
+    url: https://docs.harness.io/
+    about: Official Harness documentation and guides
