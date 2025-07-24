@@ -33,14 +33,18 @@ jobs:
 
       # Bump package.json to match the tag
       - name: Update version from tag
-        if: startsWith(github.ref, 'refs/tags/v')
         run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-            echo "Invalid version tag: $VERSION"
-            exit 1
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+            if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+              echo "Invalid version tag: $VERSION"
+              exit 1
+            fi
+            npm version $VERSION --no-git-tag-version
+            echo "Updated package.json version to $VERSION"
+          else
+            echo "Not a tag (current ref: $GITHUB_REF), skipping version update."
           fi
-          npm version $VERSION --no-git-tag-version
 
       - name: Install vsce (pinned)
         run: npm install -g vsce@2.10.0
@@ -51,6 +55,7 @@ jobs:
 
       # Finally, publish using your secret
       - name: Publish to Marketplace
+        if: startsWith(github.ref, 'refs/tags/v')
         env:
           VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
         run: vsce publish --pat $VSCE_TOKEN
