@@ -1,7 +1,7 @@
 {
   "name": "harness-syntax-highlighter",
   "displayName": "Harness Syntax Highlighter",
-  "description": "",
+  "description": "Syntax highlighting for Harness CI/CD pipeline YAML files with support for variables, expressions, and pipeline structures",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.102.0"
@@ -26,5 +26,11 @@
     "name": "Mike Strid",
     "email": "mike.strid@protonmail.com"
   },
+  "publisher": "mikestrid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strideod/harness-syntax-highlighter"
+  },
+  "keywords": ["harness", "yaml", "syntax", "highlighting", "ci/cd", "pipeline"],
   "license": "MIT"
 }
