@@ -1,0 +1,51 @@
+name: 📦 Publish Extension
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Cache npm modules based on package-lock.json (you *must* commit one!)
+      - name: Cache npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # If you commit package-lock.json, this will be fast and reproducible
+      - name: Install dependencies
+        run: npm ci
+
+      # Bump package.json to match the tag
+      - name: Update version from tag
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          npm version $VERSION --no-git-tag-version
+
+      - name: Install vsce (pinned)
+        run: npm install -g vsce@2.10.0
+
+      # Validate your extension before you ship it into the void
+      - name: Package and validate extension
+        run: vsce package
+
+      # Finally, publish using your secret
+      - name: Publish to Marketplace
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+        run: vsce publish --pat $VSCE_TOKEN
