@@ -1,65 +1,124 @@
-# harness-syntax-highlighter README
+# Harness Syntax Highlighter
 
-This is the README for your extension "harness-syntax-highlighter". After writing up a brief description, we recommend including the following sections.
+A Visual Studio Code extension that provides comprehensive syntax highlighting for Harness CI/CD pipeline YAML files.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension enhances your Harness pipeline development experience by providing:
 
-For example if there is an image subfolder under your extension project workspace:
+### Pipeline Structure Highlighting
+- **Pipeline Keywords**: `pipeline`, `stages`, `steps`, `stepGroup`, `execution`, `rollbackSteps`
+- **Common Properties**: `name`, `identifier`, `type`, `spec`, `timeout`, `when`, `condition`
+- **Template Support**: `template`, `templateRef`, `versionLabel`, `templateInputs`
 
-\!\[feature X\]\(images/feature-x.png\)
+### Step Type Recognition
+- **Deployment Steps**: `K8sRollingDeploy`, `K8sApply`, `K8sDryRun`, `K8sRollingRollback`
+- **Utility Steps**: `ShellScript`, `Http`, `HarnessApproval`
+- **Integration Steps**: `JiraCreate`, `JiraUpdate`
+- **Deployment Types**: `Kubernetes`, `Rolling`, `Canary`, `BlueGreen`
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Variable Support
+- **Harness Expressions**: `<+variable.account.name>`, `<+pipeline.variables.var>`
+- **Complex Expressions**: `<+pipeline.variables.get("var-name")>` (for variables with hyphens/periods)
+- **Runtime Inputs**: `<+input>`
+- **Variables in Strings**: Highlights Harness expressions even when embedded in quoted strings
+
+### Variable Definitions
+- **Variable Blocks**: Proper highlighting for `variables:` sections
+- **Variable Properties**: `name`, `type`, `description`, `required`, `value`
+- **Variable Types**: `Secret`, `String`, `Number`
+- **Boolean Values**: `true`, `false`
+
+## Installation
+
+1. Open VS Code
+2. Go to Extensions (Ctrl+Shift+X)
+3. Search for "Harness Syntax Highlighter"
+4. Click Install
+
+## Usage
+
+The extension automatically activates when you open `.yml` or `.yaml` files. For best results with Harness pipeline files:
+
+1. Ensure your Harness pipeline files have `.yml` or `.yaml` extensions
+2. The syntax highlighting will automatically apply to recognize Harness-specific syntax
+3. Variables and expressions will be highlighted with distinct colors based on your VS Code theme
+
+## Example
+
+```yaml
+pipeline:
+  name: Sample Pipeline
+  identifier: sample_pipeline
+  stages:
+    - stage:
+        name: Deploy Stage
+        identifier: deploy
+        type: Deployment
+        spec:
+          services:
+            values: <+input>
+          environments:
+            values: <+input>
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: Deploy Script
+                  identifier: deploy_script
+                  spec:
+                    shell: Bash
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          echo "Deploying <+service.name> to <+env.name>"
+variables:
+  - name: deploymentType
+    type: String
+    description: Type of deployment
+    required: true
+    value: <+input>
+```
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- VS Code 1.102.0 or higher
+- No additional dependencies required
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+This extension does not add any VS Code settings.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Currently supports YAML files with `.yml` and `.yaml` extensions
+- Complex nested expressions may require specific formatting for optimal highlighting
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues or pull requests.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Initial release of Harness Syntax Highlighter
 
-Initial release of ...
+- Basic pipeline structure highlighting
+- Variable expression support
+- Step type recognition
+- Variable definition highlighting
+- Support for Harness expressions in strings
 
-### 1.0.1
+## License
 
-Fixed issue #.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 1.1.0
+## Author
 
-Added features X, Y, and Z.
+**Mike Strid** - [mike.strid@protonmail.com](mailto:mike.strid@protonmail.com)
 
 ---
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy enhanced Harness pipeline development!**
