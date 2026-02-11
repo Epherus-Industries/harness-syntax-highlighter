@@ -10,21 +10,10 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "harness-yaml",
-      "aliases": ["Harness Pipeline YAML", "Harness YAML"],
-      "extensions": [".harness.yml",".harness.yaml"],
-      "configuration": "./language-configuration.json"
-    }],
     "grammars": [{
-      "language": "harness-yaml",
-      "scopeName": "source.harness.yaml",
-      "path": "./syntaxes/harness-yaml.tmLanguage.json"
-    }],
-    "themes": [{
-      "label": "Harness Colorblind Friendly",
-      "uiTheme": "vs-dark",
-      "path": "./themes/colorblind-friendly.json"
+      "scopeName": "source.harness",
+      "path": "./syntaxes/harness-yaml.tmLanguage.json",
+      "injectTo": ["source.yaml"]
     }]
   },
   "author": {
