@@ -1,6 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "harness",
+	"injectionSelector": "L:source.yaml -comment",
 	"patterns": [
 		{
 			"include": "#harness-keywords"
@@ -19,29 +20,19 @@
 		"harness-keywords": {
 			"patterns": [
 				{
-					"name": "entity.name.function.harness.pipeline-structure",
-					"match": "^\\s*(pipeline|stages?|steps?|stepGroup|execution|rollbackSteps)\\s*:",
-					"captures": {
-						"1": {
-							"name": "entity.name.function.harness.pipeline-structure"
-						}
-					}
+					"match": "^(\\s*)(pipeline|stages?|steps?|stepGroup|execution|rollbackSteps|spec|inputs|outputs|variables)\\s*:",
+					"name": "keyword.control"
 				},
 				{
-					"name": "support.function.harness.properties",
-					"match": "^\\s*(-\\s+)?(name|identifier|type|spec|timeout|when|condition|template|templateRef|versionLabel|templateInputs|shell|source|script|environmentVariables|outputVariables|services|environments|failureStrategies)\\s*:",
-					"captures": {
-						"2": {
-							"name": "support.function.harness.properties"
-						}
-					}
+					"match": "^(\\s*)(name|identifier|type|spec|timeout|when|condition|template|templateRef|versionLabel|templateInputs|shell|source|script|environmentVariables|outputVariables|services|environments|failureStrategies|description|required|value)\\s*:",
+					"name": "support.type.property-name"
 				},
 				{
-					"name": "support.class.harness.step-types",
+					"name": "entity.name.type",
 					"match": "\\b(Deployment|K8sRollingDeploy|K8sApply|K8sDryRun|K8sRollingRollback|ShellScript|Http|HarnessApproval|JiraCreate|JiraUpdate)\\b"
 				},
 				{
-					"name": "storage.type.harness.deployment-types",
+					"name": "storage.type",
 					"match": "\\b(Kubernetes|Rolling|Canary|BlueGreen)\\b"
 				}
 			]
@@ -49,33 +40,29 @@
 		"variable-definitions": {
 			"patterns": [
 				{
-					"name": "keyword.other.harness.variables-block",
 					"match": "^\\s*(variables)\\s*:",
 					"captures": {
-						"1": {
-							"name": "keyword.other.harness.variables-block"
-						}
+						"1": { "name": "keyword.control"},
+						"0": { "name": "meta.key.harness"}
 					}
 				},
 				{
-					"name": "support.variable.harness.variable-property",
 					"match": "^\\s*(-\\s+)?(name|type|description|required|value)\\s*:",
 					"captures": {
-						"2": {
-							"name": "support.variable.harness.variable-property"
-						}
+						"2": { "name": "support.type.property-name" },
+						"0": { "name": "meta.type.harness"}
 					}
 				},
 				{
-					"name": "storage.type.harness.variable-type",
+					"name": "storage.type",
 					"match": "\\b(Secret|String|Number)\\b"
 				},
 				{
-					"name": "constant.language.boolean.harness",
+					"name": "constant.language.boolean",
 					"match": "\\b(true|false)\\b"
 				},
 				{
-					"name": "meta.embedded.harness.runtime-input",
+					"name": "constant.other",
 					"match": "<\\+input>"
 				}
 			]
@@ -83,22 +70,12 @@
 		"variables": {
 			"patterns": [
 				{
-					"name": "variable.other.harness.expression",
-					"match": "<\\+([a-zA-Z_][a-zA-Z0-9_]*\\.)*[a-zA-Z_][a-zA-Z0-9_]*(\\.get\\(\"[^\"]+\"\\))?>",
-					"captures": {
-						"0": {
-							"name": "variable.other.harness.expression"
-						}
-					}
+					"name": "variable.other",
+					"match": "<\\+([a-zA-Z_][a-zA-Z0-9_]*\\.)*[a-zA-Z_][a-zA-Z0-9_]*(\\.get\\(\"[^\"]+\"\\))?>"
 				},
 				{
-					"name": "variable.other.harness.simple",
-					"match": "<\\+[^>]+>",
-					"captures": {
-						"0": {
-							"name": "variable.other.harness.simple"
-						}
-					}
+					"name": "variable.other",
+					"match": "<\\+[^>]+>"
 				}
 			]
 		},
