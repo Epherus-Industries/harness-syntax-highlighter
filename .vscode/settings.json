@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "**/.harness/**/*.yml": "harness-yaml",
+    "**/.harness/**/*.yaml": "harness-yaml",
+    "**/harness/**/*.yml": "harness-yaml",
+    "**/harness/**/*.yaml": "harness-yaml",
+    "**/pipelines/**/*.yml": "harness-yaml",
+    "**/pipelines/**/*.yaml": "harness-yaml",
+  }
+}
