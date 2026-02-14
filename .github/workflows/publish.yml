@@ -1,21 +1,31 @@
-name: 📦 Publish Extension
+name: 📦 Version And Publish Extension
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-extension-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # Cache npm modules based on package-lock.json (you *must* commit one!)
       - name: Cache npm
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -25,37 +35,34 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      # If you commit package-lock.json, this will be fast and reproducible
       - name: Install dependencies
         run: npm ci
 
-      # Bump package.json to match the tag
-      - name: Update version from tag
+      - name: Configure git identity
         run: |
-          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-            if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-              echo "Invalid version tag: $VERSION"
-              exit 1
-            fi
-            npm version $VERSION --no-git-tag-version
-            echo "Updated package.json version to $VERSION"
-          else
-            echo "Not a tag (current ref: $GITHUB_REF), skipping version update."
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump patch version and create tag
+        run: |
+          NEW_VERSION=$(npm version patch -m "chore(release): v%s [skip ci]")
+          echo "NEW_VERSION=${NEW_VERSION#v}" >> "$GITHUB_ENV"
+          echo "Bumped to ${NEW_VERSION}"
 
       - name: Install vsce (pinned)
-        run: npm install -g vsce@2.10.0
+        run: npm install -g @vscode/vsce@2.27.0
 
-      # Validate your extension before you ship it into the void
       - name: Package and validate extension
         run: vsce package
 
-      # Finally, publish using your secret
       - name: Publish to Marketplace
-        if: startsWith(github.ref, 'refs/tags/v')
         env:
           VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
-        run: vsce publish --pat $VSCE_TOKEN
+        run: vsce publish --pat "$VSCE_TOKEN"
+
+      - name: Push release commit and tag
+        run: |
+          git push origin HEAD:main
+          git push origin "v${NEW_VERSION}"
