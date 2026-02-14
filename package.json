@@ -2,7 +2,7 @@
   "name": "harness-syntax-highlighter",
   "displayName": "Harness CI/CD Pipeline Syntax Highlighter",
   "description": "Syntax highlighting for Harness CI/CD pipeline YAML files with colorblind-friendly accessibility features, supporting variables, expressions, and pipeline structures",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.102.0"
   },
@@ -10,11 +10,15 @@
     "Programming Languages"
   ],
   "contributes": {
-    "grammars": [{
-      "scopeName": "source.harness",
-      "path": "./syntaxes/harness-yaml.tmLanguage.json",
-      "injectTo": ["source.yaml"]
-    }]
+    "grammars": [
+      {
+        "scopeName": "source.harness",
+        "path": "./syntaxes/harness-yaml.tmLanguage.json",
+        "injectTo": [
+          "source.yaml"
+        ]
+      }
+    ]
   },
   "author": {
     "name": "Mike Strid",
@@ -25,6 +29,16 @@
     "type": "git",
     "url": "https://github.com/Epherus-Industries/harness-syntax-highlighter"
   },
-  "keywords": ["harness", "yaml", "syntax", "highlighting", "ci/cd", "pipeline", "colorblind", "accessibility", "a11y"],
+  "keywords": [
+    "harness",
+    "yaml",
+    "syntax",
+    "highlighting",
+    "ci/cd",
+    "pipeline",
+    "colorblind",
+    "accessibility",
+    "a11y"
+  ],
   "license": "MIT"
 }
