@@ -20,7 +20,7 @@
 		"harness-keywords": {
 			"patterns": [
 				{
-					"match": "^(\\s*)(pipeline|stages?|steps?|stepGroup|execution|rollbackSteps|spec|inputs|outputs|variables)\\s*:",
+					"match": "^(\\s*)(pipeline|stages|steps|stepGroup|execution|rollbackSteps|spec|inputs|outputs|variables)\\s*:",
 					"name": "keyword.control"
 				},
 				{

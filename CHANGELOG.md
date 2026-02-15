@@ -2,6 +2,11 @@
 
 All notable changes to the "harness-syntax-highlighter" extension will be documented in this file.
 
+## [0.0.6] - 2026-02-14
+
+### Added
+- Colorblind-friendly theme for Harness syntax highlighting.
+
 ## [0.0.1] - 2025-01-23
 
 ### Added

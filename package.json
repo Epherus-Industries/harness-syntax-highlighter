@@ -18,6 +18,13 @@
           "source.yaml"
         ]
       }
+    ],
+    "themes": [
+      {
+        "label": "Harness Colorblind",
+        "uiTheme": "vs-dark",
+        "path": "./themes/harness-colorblind.json"
+      }
     ]
   },
   "author": {
