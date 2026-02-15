@@ -1,5 +1,13 @@
 # Harness Syntax Highlighter
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Epherus-Industries/harness-syntax-highlighter/main/images/icon.png" width="180"/>
+</p>
+
+<h1 align="center">
+Harness CI/CD Pipeline Syntax Highligher
+</h1>
+
 A Visual Studio Code extension that provides comprehensive syntax highlighting for Harness CI/CD pipeline YAML files.
 
 ## Features
