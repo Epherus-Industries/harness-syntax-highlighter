@@ -101,6 +101,10 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 
 ## Release Notes
 
+### 0.0.6
+
+- Added a colorblind-friendly theme for Harness syntax highlighting.
+
 ### 0.0.1
 
 Initial release of Harness Syntax Highlighter

@@ -1,0 +1,62 @@
+{
+  "name": "Harness Colorblind Friendly",
+  "type": "dark",
+  "colors": {
+    "editor.foreground": "#D4D4D4",
+    "editor.background": "#1E1E1E"
+  },
+  "tokenColors": [
+    {
+      "name": "Harness structural keys (pipeline/stages/steps/etc.)",
+      "scope": "keyword.control",
+      "settings": {
+        "foreground": "#56B4E9",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Harness property keys (name/type/spec/etc.)",
+      "scope": "support.type.property-name",
+      "settings": {
+        "foreground": "#E69F00"
+      }
+    },
+    {
+      "name": "Harness step type values (ShellScript/K8srollingDeploy/etc.)",
+      "scope": "entity.name.type",
+      "settings": {
+        "foreground": "#009E73"
+      }
+    },
+    {
+      "name": "Harness expressions (<+...>)",
+      "scope": "variable.other",
+      "settings": {
+        "foreground": "#CC79A7",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Runtime input (<+input>)",
+      "scope": "constant.other",
+      "settings": {
+        "foreground": "#F0E442",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Booleans",
+      "scope": "constant.language.boolean",
+      "settings": {
+        "foreground": "#D55E00"
+      }
+    },
+    {
+      "name": "Strings",
+      "scope": "string",
+      "settings": {
+        "foreground": "#999999"
+      }
+    }
+  ]
+}
