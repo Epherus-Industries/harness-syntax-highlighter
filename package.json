@@ -2,6 +2,7 @@
   "name": "harness-syntax-highlighter",
   "displayName": "Harness CI/CD Pipeline Syntax Highlighter",
   "description": "Syntax highlighting for Harness CI/CD pipeline YAML files with colorblind-friendly accessibility features, supporting variables, expressions, and pipeline structures",
+  "icon": "images/icon.png",
   "version": "0.0.6",
   "engines": {
     "vscode": "^1.102.0"
